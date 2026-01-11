@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "itis-django-2k"
+version = "0.1.0"
+description = ""
+authors = ["lamarr <test.vitdub@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+numpy = "^2.3.2"
+pillow = "^11.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
