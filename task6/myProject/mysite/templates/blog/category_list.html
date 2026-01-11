@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Категории</title>
+</head>
+<body>
+    <h1>Категории</h1>
+    <a href="/">На главную</a> |
+    <a href="/categories/add/">Добавить категорию (Faker)</a>
+
+    {% for category in categories %}
+    <div style="border:1px solid #ccc; padding:10px; margin:10px;">
+        <h3>{{ category.name }}</h3>
+        <p>{{ category.description }}</p>
+        <p>Товаров: {{ category.products.count }}</p>
+        <a href="/categories/{{ category.id }}/">Подробнее</a> |
+        <a href="/categories/{{ category.id }}/delete/">Удалить</a>
+    </div>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Отзыв от {{ review.author_name }}</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .rating { color: gold; font-size: 24px; }
+        .card { border: 1px solid #ddd; padding: 20px; border-radius: 5px; }
+        .btn { padding: 8px 15px; text-decoration: none; color: white; border-radius: 3px; }
+        .btn-primary { background: #007bff; }
+        .btn-danger { background: #dc3545; }
+        .btn-secondary { background: #6c757d; }
+    </style>
+</head>
+<body>
+    <h1>📝 Отзыв #{{ review.id }}</h1>
+    
+    <p>
+        <a href="/reviews/" class="btn btn-secondary">← Назад к списку</a>
+    </p>
+    
+    <div class="card">
+        <h2>{{ review.author_name }}</h2>
+        <div class="rating">
+            {% for i in "12345" %}
+                {% if forloop.counter <= review.rating %}★{% else %}☆{% endif %}
+            {% endfor %}
+            <strong>({{ review.rating }}/5)</strong>
+        </div>
+        
+        <p><strong>Email:</strong> {{ review.email|default:"Не указан" }}</p>
+        <p><strong>Товар:</strong> 
+            <a href="/products/{{ review.product.id }}/">{{ review.product.name }}</a>
+        </p>
+        <p><strong>Категория:</strong> {{ review.product.category.name }}</p>
+        
+        <div style="background: #f8f9fa; padding: 15px; margin: 15px 0;">
+            <h4>Комментарий:</h4>
+            <p>{{ review.comment }}</p>
+        </div>
+        
+        <p><small>Опубликован: {{ review.created_at|date:"d.m.Y H:i" }}</small></p>
+    </div>
+    
+    <p style="margin-top: 20px;">
+        <a href="/reviews/{{ review.id }}/delete/" class="btn btn-danger"
+           onclick="return confirm('Удалить этот отзыв?')">
+            🗑️ Удалить отзыв
+        </a>
+    </p>
+</body>
+</html>

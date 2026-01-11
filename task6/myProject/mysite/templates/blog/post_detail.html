@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'post_list' %}">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ post.title|truncatechars:30 }}</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<article class="mb-5">
+    <header class="mb-4">
+        <h1 class="display-5 fw-bold">{{ post.title }}</h1>
+        <div class="text-muted mb-3">
+            <span class="me-3"><i class="bi bi-calendar"></i> {{ post.created_at|date:"d.m.Y H:i" }}</span>
+            {% if post.updated_at != post.created_at %}
+                <span><i class="bi bi-pencil"></i> Обновлено: {{ post.updated_at|date:"d.m.Y H:i" }}</span>
+            {% endif %}
+        </div>
+    </header>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <p class="card-text fs-5">{{ post.content|linebreaks }}</p>
+        </div>
+    </div>
+
+    <!-- Кнопки навигации -->
+    <div class="d-flex justify-content-between mt-5">
+        <a href="{% url 'post_list' %}" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Назад к списку
+        </a>
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="bi bi-share"></i> Поделиться
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#"><i class="bi bi-twitter"></i> Twitter</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-facebook"></i> Facebook</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-link-45deg"></i> Копировать ссылку</a></li>
+            </ul>
+        </div>
+    </div>
+</article>
+{% endblock %}

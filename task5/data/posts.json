@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1,
+    "title": "Мой пост",
+    "description": null,
+    "text": "Текст",
+    "status": "draft"
+  }
+]

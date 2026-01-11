@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ category.name }}</title>
+</head>
+<body>
+    <h1>📁 {{ category.name }}</h1>
+    <p><a href="/categories/">← Назад к категориям</a></p>
+    
+    <p><strong>Описание:</strong> {{ category.description }}</p>
+    <p><strong>Товаров в категории:</strong> {{ category.products.count }}</p>
+    
+    <h3>Товары в этой категории:</h3>
+    {% for product in category.products.all %}
+        <div style="border:1px solid #ccc; padding:10px; margin:5px;">
+            <strong>{{ product.name }}</strong> - {{ product.price }} руб.
+            <a href="/products/{{ product.id }}/">Подробнее</a>
+        </div>
+    {% empty %}
+        <p>В этой категории пока нет товаров.</p>
+    {% endfor %}
+    
+    <p style="margin-top: 20px;">
+        <a href="/categories/{{ category.id }}/delete/" 
+           onclick="return confirm('Удалить категорию {{ category.name }}?')"
+           style="color: red; text-decoration: none;">
+            🗑️ Удалить категорию
+        </a>
+    </p>
+</body>
+</html>

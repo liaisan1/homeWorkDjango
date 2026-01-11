@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Товары</title>
+</head>
+<body>
+    <h1>Товары</h1>
+    <a href="/">На главную</a> |
+    <a href="/products/add/">Добавить товар (Faker)</a>
+
+    {% for product in products %}
+    <div style="border:1px solid #ccc; padding:10px; margin:10px;">
+        <h3>{{ product.name }}</h3>
+        <p>Цена: {{ product.price }} руб.</p>
+        <p>Количество: {{ product.quantity }}</p>
+        <a href="/products/{{ product.id }}/">Подробнее</a> |
+        <a href="/products/{{ product.id }}/delete/">Удалить</a>
+    </div>
+    {% endfor %}
+</body>
+</html>

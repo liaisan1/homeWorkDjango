@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Магазин</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .btn { display: inline-block; padding: 10px 20px; margin: 10px;
+               background: #007bff; color: white; text-decoration: none;
+               border-radius: 5px; }
+        .btn:hover { background: #0056b3; }
+        .btn-danger { background: #dc3545; }
+        .btn-success { background: #28a745; }
+        .stat { font-size: 24px; font-weight: bold; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>🛒 Магазин</h1>
+
+    <div class="stat">
+        📊 Статистика:
+        Категорий: {{ categories_count }} |
+        Товаров: {{ products_count }} |
+        Отзывов: {{ reviews_count }}
+    </div>
+
+    <h2>📋 Все функции:</h2>
+
+    <h3>1. Категории:</h3>
+    <a class="btn" href="/categories/">📁 Список категорий</a>
+    <a class="btn btn-success" href="/categories/add/">➕ Добавить категорию (Faker)</a>
+    <a class="btn" href="/categories/1/">👁️ Категория #1</a>
+    <a class="btn btn-danger" href="/categories/1/delete/">🗑️ Удалить категорию #1</a>
+
+    <h3>2. Товары:</h3>
+    <a class="btn" href="/products/">📦 Список товаров</a>
+    <a class="btn btn-success" href="/products/add/">➕ Добавить товар (Faker)</a>
+    <a class="btn" href="/products/1/">👁️ Товар #1</a>
+    <a class="btn btn-danger" href="/products/1/delete/">🗑️ Удалить товар #1</a>
+
+    <h3>3. Отзывы:</h3>
+    <a class="btn" href="/reviews/">💬 Список отзывов</a>
+    <a class="btn btn-success" href="/reviews/add/">➕ Добавить отзыв (Faker)</a>
+    <a class="btn" href="/reviews/1/">👁️ Отзыв #1</a>
+    <a class="btn btn-danger" href="/reviews/1/delete/">🗑️ Удалить отзыв #1</a>
+
+    <h3>4. Админка:</h3>
+    <a class="btn" href="/admin/" target="_blank">⚙️ Админ-панель</a>
+    <p><small>Логин: admin | Пароль: admin123</small></p>
+</body>
+</html>

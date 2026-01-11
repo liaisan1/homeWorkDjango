@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Отзывы</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .review { border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .rating { color: gold; font-size: 20px; }
+        .btn { padding: 5px 10px; text-decoration: none; color: white; border-radius: 3px; }
+        .btn-primary { background: #007bff; }
+        .btn-danger { background: #dc3545; }
+        .btn-success { background: #28a745; }
+    </style>
+</head>
+<body>
+    <h1>💬 Отзывы</h1>
+    
+    <p>
+        <a href="/">🏠 На главную</a> | 
+        <a href="/reviews/add/" class="btn btn-success">➕ Добавить отзыв (Faker)</a>
+    </p>
+    
+    {% if reviews %}
+        <p>Всего отзывов: {{ reviews.count }}</p>
+        
+        {% for review in reviews %}
+        <div class="review">
+            <h3>{{ review.author_name }}</h3>
+            <div class="rating">
+                {% for i in "12345" %}
+                    {% if forloop.counter <= review.rating %}★{% else %}☆{% endif %}
+                {% endfor %}
+                ({{ review.rating }}/5)
+            </div>
+            <p><strong>Товар:</strong> {{ review.product.name }}</p>
+            <p>{{ review.comment|truncatewords:30 }}</p>
+            <p><small>Дата: {{ review.created_at|date:"d.m.Y H:i" }}</small></p>
+            
+            <p>
+                <a href="/reviews/{{ review.id }}/" class="btn btn-primary">Подробнее</a>
+                <a href="/reviews/{{ review.id }}/delete/" class="btn btn-danger" 
+                   onclick="return confirm('Удалить отзыв от {{ review.author_name }}?')">
+                    Удалить
+                </a>
+            </p>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div style="background: #fff3cd; padding: 20px; border: 1px solid #ffeaa7;">
+            <h3>😕 Отзывов пока нет!</h3>
+            <p>Нажмите кнопку "Добавить отзыв" чтобы создать первый отзыв.</p>
+        </div>
+    {% endif %}
+</body>
+</html>

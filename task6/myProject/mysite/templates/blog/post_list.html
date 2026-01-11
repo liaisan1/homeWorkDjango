@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Все посты{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="p-5 bg-light rounded-3">
+            <h1 class="display-4">Добро пожаловать в блог!</h1>
+            <p class="lead">Здесь вы найдете интересные статьи на разные темы.</p>
+            <hr class="my-4">
+            <p>Всего постов: {{ posts|length }}</p>
+        </div>
+    </div>
+</div>
+
+{% if posts %}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for post in posts %}
+        <div class="col">
+            <div class="card h-100 post-card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text text-muted small">
+                        <i class="bi bi-calendar"></i> {{ post.created_at|date:"d.m.Y H:i" }}
+                    </p>
+                    <p class="card-text">
+                        {{ post.content|truncatewords:30 }}
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent border-top-0">
+                    <a href="{% url 'post_detail' post.id %}" class="btn btn-primary">
+                        Читать дальше <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-warning" role="alert">
+        <h4 class="alert-heading">Постов пока нет!</h4>
+        <p>Но скоро они обязательно появятся.</p>
+    </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,93 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Django
+*.log
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+# PyCharm
+.idea/
+*.iml
+.idea_modules/
+out/
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
+.idea/dataSources.ids
+.idea/dataSources.xml
+.idea/sqlDataSources.xml
+.idea/dynamic.xml
+.idea/uiDesigner.xml
+.idea/aws.xml
+
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Project specific
+# Удали эти строки если хочешь загрузить БД
+db.sqlite3
+*.db
+# Picture transformer specific
+picture-transformer/.venv/
+picture-transformer/venv/
+picture-transformer/__pycache__/
+picture-transformer/data/
+picture-transformer/results/
+picture-transformer/*.jpg
+picture-transformer/*.png
+picture-transformer/*.jpeg
+# Exclude heavy files from picture-transformer
+picture-transformer/.venv/
+picture-transformer/venv/
+picture-transformer/__pycache__/
+picture-transformer/*.jpg
+picture-transformer/*.png
+picture-transformer/*.jpeg
+picture-transformer/data/
+picture-transformer/results/

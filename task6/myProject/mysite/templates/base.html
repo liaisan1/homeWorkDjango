@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Магазин{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        body { padding-top: 20px; background-color: #f8f9fa; }
+        .navbar { margin-bottom: 30px; box-shadow: 0 2px 4px rgba(0,0,0,.1); }
+        .card { transition: transform 0.3s, box-shadow 0.3s; margin-bottom: 20px; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,.1); }
+        .btn-add { background: linear-gradient(45deg, #28a745, #20c997); border: none; }
+        .btn-delete { background: linear-gradient(45deg, #dc3545, #c82333); border: none; }
+        .stat-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Навигация -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <i class="bi bi-shop"></i> Магазин
+                </a>
+                <div class="navbar-nav">
+                    <a class="nav-link" href="{% url 'category_list' %}">
+                        <i class="bi bi-grid"></i> Категории
+                    </a>
+                    <a class="nav-link" href="{% url 'product_list' %}">
+                        <i class="bi bi-box"></i> Товары
+                    </a>
+                    <a class="nav-link" href="{% url 'review_list' %}">
+                        <i class="bi bi-chat"></i> Отзывы
+                    </a>
+                    <a class="nav-link" href="/admin/" target="_blank">
+                        <i class="bi bi-gear"></i> Админка
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Кнопки быстрого добавления -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <a href="{% url 'add_random_category' %}" class="btn btn-add btn-lg w-100">
+                    <i class="bi bi-plus-circle"></i> Добавить категорию
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{% url 'add_random_product' %}" class="btn btn-add btn-lg w-100">
+                    <i class="bi bi-plus-circle"></i> Добавить товар
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{% url 'add_random_review' %}" class="btn btn-add btn-lg w-100">
+                    <i class="bi bi-plus-circle"></i> Добавить отзыв
+                </a>
+            </div>
+        </div>
+
+        <!-- Содержимое -->
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
