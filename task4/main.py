@@ -1,4 +1,5 @@
 from user_manager import UserManager
+from user import User, UserStatus
 
 
 def main():
@@ -10,15 +11,14 @@ def main():
 
     print("\n1. Создаем пользователей:")
 
-    # Первый способ - создать через create_user
+    # Создаем пользователей
     user1 = manager.create_user("аня", "anya@mail.ru")
     print(f"   Создан: {user1}")
 
-    user2 = manager.create_user("вася", "vasya@mail.ru")
-    user2.status = "inactive"  # Меняем статус
+    user2 = manager.create_user("вася", "vasya@mail.ru", UserStatus.INACTIVE)
     print(f"   Создан: {user2}")
 
-    user3 = manager.create_user("петя", "petya@mail.ru")
+    user3 = manager.create_user("петя", "petya@mail.ru", UserStatus.ACTIVE)
     print(f"   Создан: {user3}")
 
     manager.print_all()
@@ -36,10 +36,13 @@ def main():
         print(f"   Найден по имени 'вася': {found.email}")
 
     # По статусу
-    inactive_users = manager.get_by_status("inactive")
+    inactive_users = manager.get_by_status(UserStatus.INACTIVE)
     print(f"   Неактивных пользователей: {len(inactive_users)}")
 
-    # 5. Удаляем пользователей
+    # По любому атрибуту (email)
+    email_users = manager.get_by_attribute("email", "petya@mail.ru")
+    print(f"   Пользователей с email 'petya@mail.ru': {len(email_users)}")
+
     print("\n3. Удаляем пользователей:")
 
     # По ID
@@ -50,8 +53,23 @@ def main():
     if manager.delete_by_username("аня"):
         print("   Удалили пользователя 'аня'")
 
+    # По статусу
+    deleted_count = manager.delete_by_status(UserStatus.INACTIVE)
+    print(f"   Удалили {deleted_count} неактивных пользователей")
+
     print("\n4. Результат после удаления:")
     manager.print_all()
+
+    # Демонстрация добавления пользователя напрямую
+    print("\n5. Добавляем пользователя напрямую:")
+    new_user = User(
+        user_id=100,
+        username="мария",
+        email="maria@example.com",
+        status=UserStatus.BANNED
+    )
+    if manager.add_user(new_user):
+        print(f"   Добавлен: {new_user}")
 
     print("\n" + "=" * 40)
     print("Все данные сохранены в файле 'users.json'")

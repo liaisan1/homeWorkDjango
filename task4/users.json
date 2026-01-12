@@ -1,8 +1,20 @@
 [
   {
-    "user_id": 2,
-    "username": "вася",
-    "email": "vasya@mail.ru",
-    "status": "inactive"
+    "user_id": 5,
+    "username": "петя",
+    "email": "petya@mail.ru",
+    "status": "active"
+  },
+  {
+    "user_id": 8,
+    "username": "петя",
+    "email": "petya@mail.ru",
+    "status": "active"
+  },
+  {
+    "user_id": 100,
+    "username": "мария",
+    "email": "maria@example.com",
+    "status": "banned"
   }
 ]
